@@ -731,7 +731,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 194908186}
-  - component: {fileID: 194908187}
   m_Layer: 5
   m_Name: EnemyCardPositions
   m_TagString: Untagged
@@ -761,31 +760,6 @@ RectTransform:
   m_AnchoredPosition: {x: 129, y: -302}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &194908187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 194908185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 0
-  m_Spacing: 170
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
 --- !u!1 &234446097
 GameObject:
   m_ObjectHideFlags: 0
@@ -1498,7 +1472,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 595436146}
-  - component: {fileID: 595436147}
   m_Layer: 5
   m_Name: CardPositions
   m_TagString: Untagged
@@ -1528,31 +1501,6 @@ RectTransform:
   m_AnchoredPosition: {x: -687, y: -301}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &595436147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 595436145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 0
-  m_Spacing: 170
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
 --- !u!1 &649378326
 GameObject:
   m_ObjectHideFlags: 0
@@ -2116,29 +2064,32 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-    position:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    positions:
+    - {fileID: 1257693285}
+    - {fileID: 907515851}
+    - {fileID: 681890066}
     animNames:
-    - 
-    - 
-    - 
+    - CardDeal1
+    - CardDeal2
+    - CardDeal3
     isPlayers: 1
   enemysHand:
     cards:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-    position:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    positions:
+    - {fileID: 1652411981}
+    - {fileID: 943695113}
+    - {fileID: 421444318}
     animNames:
-    - 
-    - 
-    - 
+    - CardDeal4
+    - CardDeal5
+    - CardDeal6
     isPlayers: 0
+  cardPrefab: {fileID: 7312965718539122337, guid: 4a4e4a10a906b0442a0bcdb16f87b737,
+    type: 3}
+  canvas: {fileID: 888177141}
 --- !u!4 &884155256
 Transform:
   m_ObjectHideFlags: 0
@@ -3893,6 +3844,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card
       objectReference: {fileID: 0}
+    - target: {fileID: 7312965718539122337, guid: 4a4e4a10a906b0442a0bcdb16f87b737,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7312965718539122338, guid: 4a4e4a10a906b0442a0bcdb16f87b737,
         type: 3}
       propertyPath: m_Pivot.x
@@ -3976,7 +3932,7 @@ PrefabInstance:
     - target: {fileID: 7312965718539122338, guid: 4a4e4a10a906b0442a0bcdb16f87b737,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -687
+      value: -684
       objectReference: {fileID: 0}
     - target: {fileID: 7312965718539122338, guid: 4a4e4a10a906b0442a0bcdb16f87b737,
         type: 3}
