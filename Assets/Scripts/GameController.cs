@@ -12,6 +12,9 @@ public class GameController : MonoBehaviour
 
     public List<CardData> cards = new List<CardData>();
 
+    public Player player;
+    public Player enemy;
+
     public Sprite[] healthNumbers = new Sprite[10];
     public Sprite[] damageNumbers = new Sprite[10];
 
@@ -49,5 +52,74 @@ public class GameController : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
         isPlayeble = true;
+    }
+
+    internal bool UseCard(Card card, Player usingOnPlayer, Hand fromHand)
+    {
+        if (!CardValid(card, usingOnPlayer, fromHand))
+        {
+            return false;
+        }
+
+        return false;
+    }
+
+    internal bool CardValid(Card cardBeingPlayed, Player usingOnPlayer, Hand fromHand)
+    {
+        bool valid = false;
+        if (cardBeingPlayed == null)
+        {
+            return false;
+        }
+        if (fromHand.isPlayers)
+        {
+            if (cardBeingPlayed.cardData.cost <= player.mana)
+            {
+                if(usingOnPlayer.isPlayer && cardBeingPlayed.cardData.isDefenseCard)
+                {
+                    valid = true;
+                }
+                if(!usingOnPlayer.isPlayer && !cardBeingPlayed.cardData.isDefenseCard)
+                {
+                    valid = true;
+                }
+            }
+        }
+        else
+        {
+            if (!usingOnPlayer.isPlayer && cardBeingPlayed.cardData.isDefenseCard)
+            {
+                valid = true;
+            }
+            if (usingOnPlayer.isPlayer && !cardBeingPlayed.cardData.isDefenseCard)
+            {
+                valid = true;
+            }
+        }
+        return valid;
+    }
+
+    internal void CastCard(Card card, Player usingOnPlayer, Hand fromHand)
+    {
+        if (card.cardData.isMirrorCard)
+        {
+
+        }
+        else
+        {
+            if (card.cardData.isDefenseCard)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+    }
+
+    internal void CastAttackEffect(Card card, Player usingOnPlayer)
+    {
+
     }
 }

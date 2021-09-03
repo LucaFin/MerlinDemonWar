@@ -2050,6 +2050,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5cabf2a3e3e089840b6c65950faceb12, type: 2}
   - {fileID: 11400000, guid: c6b54e061e11a32409a52a71973951f4, type: 2}
   - {fileID: 11400000, guid: 0cdccaca7e0b49e4a883137a1822e47f, type: 2}
+  player: {fileID: 649378329}
+  enemy: {fileID: 2142104970}
   healthNumbers:
   - {fileID: -1439962401544170818, guid: a30c307bb8af178478e053e8b016c103, type: 3}
   - {fileID: -7250221663623815539, guid: a30c307bb8af178478e053e8b016c103, type: 3}
@@ -2103,6 +2105,7 @@ MonoBehaviour:
   cardPrefab: {fileID: 7312965718539122337, guid: 4a4e4a10a906b0442a0bcdb16f87b737,
     type: 3}
   canvas: {fileID: 888177141}
+  isPlayeble: 0
 --- !u!4 &884155256
 Transform:
   m_ObjectHideFlags: 0
@@ -3857,6 +3860,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card
       objectReference: {fileID: 0}
+    - target: {fileID: 7312965718539122337, guid: 4a4e4a10a906b0442a0bcdb16f87b737,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7312965718539122338, guid: 4a4e4a10a906b0442a0bcdb16f87b737,
         type: 3}
       propertyPath: m_Pivot.x
@@ -3940,7 +3948,7 @@ PrefabInstance:
     - target: {fileID: 7312965718539122338, guid: 4a4e4a10a906b0442a0bcdb16f87b737,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -684
+      value: -676
       objectReference: {fileID: 0}
     - target: {fileID: 7312965718539122338, guid: 4a4e4a10a906b0442a0bcdb16f87b737,
         type: 3}

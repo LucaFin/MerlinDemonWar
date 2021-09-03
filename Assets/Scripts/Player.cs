@@ -39,6 +39,14 @@ public class Player : MonoBehaviour, IDropHandler
         {
             return;
         }
-        Debug.Log("Card dropped on Player/Enemy");
+        GameObject obj = eventData.pointerDrag;
+        if (obj != null)
+        {
+            Card card = obj.GetComponent<Card>();
+            if (card != null)
+            {
+
+            }
+        }
     }
 }
