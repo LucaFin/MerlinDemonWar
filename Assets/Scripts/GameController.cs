@@ -72,6 +72,9 @@ public class GameController : MonoBehaviour
         }
         isPlayeble = false;
         CastCard(card, usingOnPlayer, fromHand);
+        player.glowImage.gameObject.SetActive(false);
+        enemy.glowImage.gameObject.SetActive(false);
+        fromHand.RemoveCard(card);
         return false;
     }
 
@@ -100,19 +103,34 @@ public class GameController : MonoBehaviour
     {
         if (card.cardData.isMirrorCard)
         {
-
+            usingOnPlayer.SetMirror(true);
+            isPlayeble = true;
         }
         else
         {
             if (card.cardData.isDefenseCard)
             {
+                usingOnPlayer.health += card.cardData.damage;
+                if (usingOnPlayer.health > usingOnPlayer.maxHealth)
+                {
+                    usingOnPlayer.health = usingOnPlayer.maxHealth;
+                }
+                UpdateHealths();
 
+                StartCoroutine(CastHealEffect(usingOnPlayer));
+                
             }
             else
             {
                 CastAttackEffect(card, usingOnPlayer);
             }
         }
+    }
+
+    private IEnumerator CastHealEffect(Player usingOnPlayer)
+    {
+        yield return new WaitForSeconds(0.5f);
+        isPlayeble = true;
     }
 
     internal void CastAttackEffect(Card card, Player usingOnPlayer)
@@ -135,7 +153,7 @@ public class GameController : MonoBehaviour
             switch (card.cardData.damageType)
             {
                 case CardData.DamageType.Fire:
-                    effect.effectImage.sprite = card.cardData.isMulti?multiFireBallImage:fireBallImage;
+                    effect.effectImage.sprite = card.cardData.isMulti ? multiFireBallImage : fireBallImage;
                     break;
                 case CardData.DamageType.Ice:
                     effect.effectImage.sprite = card.cardData.isMulti ? multiIceBallImage : iceBallImage;
@@ -144,6 +162,19 @@ public class GameController : MonoBehaviour
                     effect.effectImage.sprite = fireAndIceBallImage;
                     break;
             }
+        }
+    }
+    internal void UpdateHealths()
+    {
+        player.UpdateHealth();
+        enemy.UpdateHealth();
+        if (player.health <= 0)
+        {
+
+        }
+        if (enemy.health <= 0)
+        {
+
         }
     }
 }

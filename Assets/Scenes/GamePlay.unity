@@ -1124,14 +1124,14 @@ RectTransform:
   m_GameObject: {fileID: 459625639}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2142104968}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 170, y: -72}
+  m_AnchoredPosition: {x: -165, y: -59}
   m_SizeDelta: {x: 58, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &459625641
@@ -1592,7 +1592,8 @@ MonoBehaviour:
   mirrorImage: {fileID: 50881184}
   healthNumberImage: {fileID: 192191669}
   glowImage: {fileID: 327989714}
-  health: 5
+  maxHealth: 9
+  health: 9
   mana: 1
   isPlayer: 1
   isFire: 0
@@ -3848,6 +3849,7 @@ MonoBehaviour:
   mirrorImage: {fileID: 459625641}
   healthNumberImage: {fileID: 1393021051}
   glowImage: {fileID: 124559247}
+  maxHealth: 5
   health: 5
   mana: 1
   isPlayer: 0
