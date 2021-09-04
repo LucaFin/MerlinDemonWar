@@ -2106,6 +2106,16 @@ MonoBehaviour:
     type: 3}
   canvas: {fileID: 888177141}
   isPlayeble: 0
+  effectFromLeftPrefab: {fileID: 6866317750735107606, guid: 4f08fd8a21999794187bebfdf2372acf,
+    type: 3}
+  effectFromRightPrefab: {fileID: 8526889241062605451, guid: 6a271a3008fb9d04cbe1b3ea742796c2,
+    type: 3}
+  fireBallImage: {fileID: 21300000, guid: 0b9981e3ad06f5f439471b9ff5d16807, type: 3}
+  iceBallImage: {fileID: 21300000, guid: 3bdc1fdecb39c694c90a748e174efd04, type: 3}
+  multiFireBallImage: {fileID: 21300000, guid: ab1ecada569a67e4caa44a333271fe5e, type: 3}
+  multiIceBallImage: {fileID: 21300000, guid: c700fa50e0fe536459d2389923fc6905, type: 3}
+  fireAndIceBallImage: {fileID: 21300000, guid: eea5462a61365df4480c7964b30146c2,
+    type: 3}
 --- !u!4 &884155256
 Transform:
   m_ObjectHideFlags: 0

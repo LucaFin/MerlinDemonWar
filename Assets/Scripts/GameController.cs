@@ -25,6 +25,16 @@ public class GameController : MonoBehaviour
     public Canvas canvas;
 
     public bool isPlayeble = false;
+
+    public GameObject effectFromLeftPrefab;
+    public GameObject effectFromRightPrefab;
+
+    public Sprite fireBallImage;
+    public Sprite iceBallImage;
+    public Sprite multiFireBallImage;
+    public Sprite multiIceBallImage;
+    public Sprite fireAndIceBallImage;
+
     private void Awake()
     {
         instance = this;
@@ -60,7 +70,8 @@ public class GameController : MonoBehaviour
         {
             return false;
         }
-
+        isPlayeble = false;
+        CastCard(card, usingOnPlayer, fromHand);
         return false;
     }
 
@@ -75,26 +86,12 @@ public class GameController : MonoBehaviour
         {
             if (cardBeingPlayed.cardData.cost <= player.mana)
             {
-                if(usingOnPlayer.isPlayer && cardBeingPlayed.cardData.isDefenseCard)
-                {
-                    valid = true;
-                }
-                if(!usingOnPlayer.isPlayer && !cardBeingPlayed.cardData.isDefenseCard)
-                {
-                    valid = true;
-                }
+                valid = usingOnPlayer.isPlayer == cardBeingPlayed.cardData.isDefenseCard;
             }
         }
         else
         {
-            if (!usingOnPlayer.isPlayer && cardBeingPlayed.cardData.isDefenseCard)
-            {
-                valid = true;
-            }
-            if (usingOnPlayer.isPlayer && !cardBeingPlayed.cardData.isDefenseCard)
-            {
-                valid = true;
-            }
+            valid = usingOnPlayer.isPlayer != cardBeingPlayed.cardData.isDefenseCard;
         }
         return valid;
     }
@@ -113,13 +110,40 @@ public class GameController : MonoBehaviour
             }
             else
             {
-
+                CastAttackEffect(card, usingOnPlayer);
             }
         }
     }
 
     internal void CastAttackEffect(Card card, Player usingOnPlayer)
     {
+        GameObject effectGO;
+        if (usingOnPlayer.isPlayer)
+        {
+            effectGO = Instantiate(effectFromRightPrefab, canvas.gameObject.transform);
+        }
+        else
+        {
+            effectGO = Instantiate(effectFromLeftPrefab, canvas.gameObject.transform);
+        }
+        Effect effect = effectGO.GetComponent<Effect>();
+        if (effect)
+        {
+            effect.targetPlayer = usingOnPlayer;
+            effect.sourceCard = card;
 
+            switch (card.cardData.damageType)
+            {
+                case CardData.DamageType.Fire:
+                    effect.effectImage.sprite = card.cardData.isMulti?multiFireBallImage:fireBallImage;
+                    break;
+                case CardData.DamageType.Ice:
+                    effect.effectImage.sprite = card.cardData.isMulti ? multiIceBallImage : iceBallImage;
+                    break;
+                case CardData.DamageType.Both:
+                    effect.effectImage.sprite = fireAndIceBallImage;
+                    break;
+            }
+        }
     }
 }
