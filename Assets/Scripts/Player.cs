@@ -19,6 +19,12 @@ public class Player : MonoBehaviour, IDropHandler
 
     public GameObject[] manaBalls = new GameObject[5];
 
+    public AudioSource dealAudio;
+    public AudioSource healAudio;
+    public AudioSource mirrorAudio;
+    public AudioSource smashAudio;
+    public AudioSource dieAudio;
+
     private Animator animator;
     // Start is called before the first frame update
     void Start()
@@ -88,5 +94,21 @@ public class Player : MonoBehaviour, IDropHandler
                 manaBalls[m].SetActive(false);
             }
         }
+    }
+    internal void PlayMirrorSound()
+    {
+        mirrorAudio.Play();
+    }
+    internal void PlaySmashSound()
+    {
+        smashAudio.Play();
+    }
+    internal void PlayHealSound()
+    {
+        healAudio.Play();
+    }
+    internal void PlayDealSound()
+    {
+        dealAudio.Play();
     }
 }

@@ -9,12 +9,16 @@ public class Effect : MonoBehaviour
     public Card sourceCard;
     public Image effectImage;
 
+    public AudioSource iceAudio;
+    public AudioSource fireballAudio;
+
     public void EndTrigger()
     {
         bool bounce = targetPlayer.hasMirror();
         if (bounce)
         {
             targetPlayer.SetMirror(false);
+            targetPlayer.PlaySmashSound();
             if (targetPlayer.isPlayer)
             {
                 GameController.instance.CastAttackEffect(sourceCard, GameController.instance.enemy);
@@ -41,6 +45,19 @@ public class Effect : MonoBehaviour
             targetPlayer.health -= damage;
             targetPlayer.PlayHitAnim();
             GameController.instance.UpdateHealths();
+
+            if (targetPlayer.health <= 0)
+            {
+                targetPlayer.health = 0;
+                if (targetPlayer.isPlayer)
+                {
+                    GameController.instance.PlayPlayerDieSound();
+                }
+                else
+                {
+                    GameController.instance.PlayEnemyDieSound();
+                }
+            }
             if (!bounce)
             {
                 GameController.instance.NextPlayersTurn();
@@ -48,5 +65,15 @@ public class Effect : MonoBehaviour
             GameController.instance.isPlayable = true;
         }
         Destroy(gameObject);
+    }
+
+    internal void PlayIceSound()
+    {
+        iceAudio.Play();
+    }
+
+    internal void PlayFireballSound()
+    {
+        fireballAudio.Play();
     }
 }

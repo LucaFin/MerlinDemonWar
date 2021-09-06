@@ -48,6 +48,9 @@ public class GameController : MonoBehaviour
 
     public int playerScore = 0;
     public int playerKill = 0;
+
+    public AudioSource playerDieAudio;
+    public AudioSource enemyDieAudio;
     private void Awake()
     {
         instance = this;
@@ -124,6 +127,7 @@ public class GameController : MonoBehaviour
         if (card.cardData.isMirrorCard)
         {
             usingOnPlayer.SetMirror(true);
+            usingOnPlayer.PlayMirrorSound();
             NextPlayersTurn();
             isPlayable = true;
         }
@@ -132,6 +136,7 @@ public class GameController : MonoBehaviour
             if (card.cardData.isDefenseCard)
             {
                 usingOnPlayer.health += card.cardData.damage;
+                usingOnPlayer.PlayHealSound();
                 if (usingOnPlayer.health > usingOnPlayer.maxHealth)
                 {
                     usingOnPlayer.health = usingOnPlayer.maxHealth;
@@ -139,7 +144,6 @@ public class GameController : MonoBehaviour
                 UpdateHealths();
 
                 StartCoroutine(CastHealEffect(usingOnPlayer));
-                
             }
             else
             {
@@ -148,6 +152,7 @@ public class GameController : MonoBehaviour
             if (fromHand.isPlayers)
             {
                 playerScore += card.cardData.damage;
+                UpdateScore();
             }
         }
         if (fromHand.isPlayers)
@@ -190,12 +195,16 @@ public class GameController : MonoBehaviour
             {
                 case CardData.DamageType.Fire:
                     effect.effectImage.sprite = card.cardData.isMulti ? multiFireBallImage : fireBallImage;
+                    effect.PlayFireballSound();
                     break;
                 case CardData.DamageType.Ice:
                     effect.effectImage.sprite = card.cardData.isMulti ? multiIceBallImage : iceBallImage;
+                    effect.PlayIceSound();
                     break;
                 case CardData.DamageType.Both:
                     effect.effectImage.sprite = fireAndIceBallImage;
+                    effect.PlayIceSound();
+                    effect.PlayFireballSound();
                     break;
             }
         }
@@ -212,9 +221,9 @@ public class GameController : MonoBehaviour
         {
             playerKill++;
             playerScore += 100;
+            UpdateScore();
             StartCoroutine(NewEnemy());
         }
-        UpdateScore();
     }
 
     private IEnumerator NewEnemy()
@@ -357,5 +366,15 @@ public class GameController : MonoBehaviour
     private void UpdateScore()
     {
         scoreText.text = "Demons killed: " + playerKill.ToString() + " Score: " + playerScore.ToString();
+    }
+
+    internal void PlayPlayerDieSound()
+    {
+        playerDieAudio.Play();
+    }
+
+    internal void PlayEnemyDieSound()
+    {
+        enemyDieAudio.Play();
     }
 }
