@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardTitle: Large Health
   description: Restore 4 health
-  cost: 1
+  cost: 2
   damage: 4
   damageType: 0
   cardImage: {fileID: 21300000, guid: d8380de44ba3d3348b2b3227fbf1bc35, type: 3}

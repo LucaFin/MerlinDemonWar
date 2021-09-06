@@ -11,7 +11,8 @@ public class Effect : MonoBehaviour
 
     public void EndTrigger()
     {
-        if (targetPlayer.hasMirror())
+        bool bounce = targetPlayer.hasMirror();
+        if (bounce)
         {
             targetPlayer.SetMirror(false);
             if (targetPlayer.isPlayer)
@@ -36,12 +37,15 @@ public class Effect : MonoBehaviour
                 {
                     damage = damage / 2;
                 }
-                targetPlayer.health -= damage;
-                targetPlayer.PlayHitAnim();
-                GameController.instance.UpdateHealths();
-                GameController.instance.isPlayeble = true;
-                
             }
+            targetPlayer.health -= damage;
+            targetPlayer.PlayHitAnim();
+            GameController.instance.UpdateHealths();
+            if (!bounce)
+            {
+                GameController.instance.NextPlayersTurn();
+            }
+            GameController.instance.isPlayable = true;
         }
         Destroy(gameObject);
     }

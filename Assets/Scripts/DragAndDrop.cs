@@ -14,7 +14,7 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (!GameController.instance.isPlayeble)
+        if (!GameController.instance.isPlayable || !GameController.instance.playersTurn)
         {
             return;
         }

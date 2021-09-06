@@ -7,15 +7,12 @@ public class BurnZone : MonoBehaviour, IDropHandler
 {
     public void OnDrop(PointerEventData eventData)
     {
-        if (!GameController.instance.isPlayeble)
-        {
-            return;
-        }
         GameObject obj = eventData.pointerDrag;
         Card card = obj.GetComponent<Card>();
         if (card != null)
         {
             GameController.instance.playersHand.RemoveCard(card);
+            GameController.instance.NextPlayersTurn();
         }
     }
 }
